@@ -10,6 +10,7 @@ class Kandang:
     def __init__(self, nama_kandang: str = "Kandang Utama"):
         self.nama_kandang = nama_kandang
         self.kapasitas = kapasitas
+        self.kapasitas = 30 #diberi batas kapasitas agar bisa dikontrol jumlah hewannya
         self.hewan_list = [] 
 
     def tambah_hewan(self, hewan) -> bool:
