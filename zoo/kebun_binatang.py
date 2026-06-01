@@ -8,6 +8,7 @@ class KebunBinatang:
 
             if isinstance(hewan, BisaTerbang):
                 hewan.terbang()
+            if isinstance(hewan, BisaBerlari):
+                hewan.berlari()
             if isinstance(hewan, BisaBerenang):
                 hewan,berenang()
-            
