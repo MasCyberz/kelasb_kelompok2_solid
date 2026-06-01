@@ -11,10 +11,22 @@
 
 
 from hewan.hewan import Hewan
+from interfaces.bisa_berjalan import BisaBerjalan
+from interfaces.bisa_berenang import BisaBerenang
 
-class HewanDarat(Hewan):
-    def __init__(self, nama, jenis):
-        super().__init__(nama, jenis)
-
+class Kucing(Hewan, BisaBerjalan):
     def makan(self):
-        print(f"{self.nama} sedang makan di darat.")
+        print(f"{self.nama} sedang makan wiskas")
+    
+    def berjalan(self):
+        print(f"{self.nama} sedang berjalan")
+
+class Pinguin(Hewan, BisaBerjalan, BisaBerenang):
+    def makan(self):
+        print(f"{self.nama} sedang makan ikan")
+    
+    def berjalan(self):
+        print(f"{self.nama} sedang berjalan diatas es")
+        
+    def berenang(self):
+        print(f"{self.nama} juga bisa berenang di air dingin")

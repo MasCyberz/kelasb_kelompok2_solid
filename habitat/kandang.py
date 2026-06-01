@@ -14,12 +14,13 @@ class Kandang:
 
     def tambah_hewan(self, hewan) -> bool:
         # [Memenuhi DIP & OCP] 
-        # Dimana nanti program enerima objek 'hewan' secara umum lewat abstraksi.
+        # Dimana nanti program menerima objek 'hewan' secara umum lewat abstraksi.
         if len(self.hewan_list) < self.kapasitas:
             self.hewan_list.append(hewan)
-            print(f"-> [INFO] {hewan.nama} berhasil dimasukkan ke {self.nama_kandang}.")
+            print(f" [INFO] {hewan.nama} berhasil dimasukkan ke {self.nama_kandang}.")
             return True 
-        print(f"-> [PERINGATAN] {self.nama_kandang} sudah penuh! Gagal memasukkan {hewan.nama}.")
+        
+        print(f" [PERINGATAN] {self.nama_kandang} sudah penuh! Gagal memasukkan {hewan.nama}.")
         return False
 
     def tampilkan_penghuni(self):
@@ -31,5 +32,5 @@ class Kandang:
             return
         
         for index, hewan in enumerate(self.hewan_list, start=1):
-            jenis_hewan = hewan.__class__.__name__
+            jenis_hewan = hewan.jenis
             print(f"{index}. {hewan.nama} ({jenis_hewan})")

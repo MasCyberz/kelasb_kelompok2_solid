@@ -1,5 +1,6 @@
 class PemberianMakan:
-    def beri_makan(self, hewan):
-        print(f"\nMemberi makan {hewan.nama}...")
-        hewan.makan()
-        print(f"{hewan.nama} sudah selesai makan.")
+    def beri_makan(self, daftar_hewan):
+        print("\n=== PEMBERIAN MAKAN ===")
+
+        for hewan in daftar_hewan:
+            hewan.makan()
