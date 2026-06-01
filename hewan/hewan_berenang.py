@@ -10,30 +10,20 @@
 # Interface Segregation: Implementasi interface BisaBerenang (dipisah dari terbang dan makan).
 # Dependency Inversion: Bergantung pada abstraksi Hewan dan BisaBerenang.
 
-from abc import ABC, abstractmethod
 from hewan.hewan import Hewan
-from interfaces.interface1 import BisaBerenang
+from interfaces.bisa_berenang import BisaBerenang
 
-class HewanBerenang(Hewan, BisaBerenang, ABC):
-    def __init__(self, nama, jenis):
-        super().__init__(nama, jenis)
-
-    @abstractmethod
-    def berenang(self):
-        pass
-
-
-class Ikan(HewanBerenang):
-    def __init__(self, nama, jenis):
-        super().__init__(nama, jenis)
+class Ikan(Hewan, BisaBerenang):
+    def makan(self):
+        print(f"{self.nama} sedang makan")
 
     def berenang(self):
         print(f"{self.nama} sedang berenang dengan sirip.")
 
 
-class UburUbur(HewanBerenang):
-    def __init__(self, nama, jenis):
-        super().__init__(nama, jenis)
+class UburUbur(Hewan, BisaBerenang):
+    def makan(self):
+        print(f"{self.nama} sedang makan")
 
     def berenang(self):
         print(f"{self.nama} sedang berenang.")

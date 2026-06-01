@@ -1,138 +1,35 @@
-from abc import ABC, abstractmethod
+from hewan.hewan_darat import Kucing, Pinguin
+from habitat.kandang import Kandang
 
-# ANALISIS KESALAHAN
+from services.pemberian_makan import PemberianMakan
+from services.perawatan import Perawatan
 
-# 1. SRP (Single Responsibility Principle)
-#    Class Kandang memiliki 2 tugas:
-#    - Menyimpan hewan
-#    - Membersihkan kandang
-#
-#    Solusi:
-#    Pisahkan fitur membersihkan kandang ke class baru bernama PembersihKandang.
+from zoo.kebun_binatang import KebunBinatang
 
 
-# 2. ISP (Interface Segregation Principle)
-#    Semua hewan dipaksa memiliki method terbang().
-#
-#    Padahal:
-#    - Burung bisa terbang
-#    - Kucing tidak bisa terbang
-#
-#    Solusi:
-#    Buat interface khusus untuk hewan yang memang bisa terbang.
+def main():
 
+    kucing = Kucing("Kucing Himalaya", "Albino", 3)
+    pinguin = Pinguin("Pinguin Antartika", "Hitam", 5)
 
-# 3. OCP (Open/Closed Principle)
-#    Jika nanti ada hewan berenang, maka class Hewan harus diubah lagi.
-#
-#    Solusi:
-#    Pisahkan perilaku menjadi interface agar mudah dikembangkan tanpa mengubah class lama.
+    kandang = Kandang("Kandang Kutub")
 
+    kandang.tambah_hewan(kucing)
+    kandang.tambah_hewan(pinguin)
 
-# 4. DIP (Dependency Inversion Principle)
-#    KebunBinatang langsung membuat object Kandang.
-#
-#    self.kandang = Kandang()
-#
-#    Solusi:
-#    Gunakan dependency injection agar lebih fleksibel dan mudah dikembangkan.
+    kandang.tampilkan_penghuni()
 
+    pemberian_makan = PemberianMakan()
+    perawatan = Perawatan()
 
-# PERBAIKAN KODE SESUAI SOLID
+    kebun_binatang = KebunBinatang(
+        kandang,
+        pemberian_makan,
+        perawatan
+    )
 
-# ABSTRACT CLASS
+    kebun_binatang.operasional_harian()
 
-class Hewan(ABC):
-    def __init__(self, nama):
-        self.nama = nama
-
-    @abstractmethod
-    def makan(self):
-        pass
-
-
-# INTERFACE PERILAKU
-
-class BisaTerbang:
-    def terbang(self):
-        print(f"{self.nama} sedang terbang.")
-
-class BisaBerenang:
-    def berenang(self):
-        print(f"{self.nama} sedang berenang.")
-
-class BisaBerlari:
-    def berlari(self):
-        print(f"{self.nama} sedang berlari.")
-
-
-# IMPLEMENTASI HEWAN
-
-class Singa(Hewan, BisaBerlari):
-    def makan(self):
-        print(f"{self.nama} sedang makan daging.")
-
-class Burung(Hewan, BisaTerbang):
-    def makan(self):
-        print(f"{self.nama} sedang makan biji-bijian.")
-
-class Ikan(Hewan, BisaBerenang):
-    def makan(self):
-        print(f"{self.nama} sedang makan pelet.")
-
-# KANDANG
-
-class Kandang:
-    def __init__(self):
-        self.hewan_list = []
-
-    def tambah_hewan(self, hewan):
-        self.hewan_list.append(hewan)
-
-
-# PEMBERSIHAN KANDANG
-
-class PembersihanKandang:
-    def bersihkan_kandang(self):
-        print("Kandang dibersihkan.")
-
-
-# KEBUN BINATANG
-
-class KebunBinatang:
-    def __init__(self, kandang):
-        self.kandang = kandang
-
-    def rawat_semua_hewan(self):
-        for hewan in self.kandang.hewan_list:
-
-            hewan.makan()
-
-            if isinstance(hewan, BisaTerbang):
-                hewan.terbang()
-
-            if isinstance(hewan, BisaBerenang):
-                hewan.berenang()
-
-            if isinstance(hewan, BisaBerlari):
-                hewan.berlari()
-
-
-# TEST PROGRAM
 
 if __name__ == "__main__":
-
-    kandang = Kandang()
-
-    kandang.tambah_hewan(Singa("Simba"))
-    kandang.tambah_hewan(Burung("Elang"))
-    kandang.tambah_hewan(Ikan("Nemo"))
-
-    kebun_binatang = KebunBinatang(kandang)
-
-    kebun_binatang.rawat_semua_hewan()
-
-    print()
-
-    pembersihan = PembersihanKandang()
-    pembersihan.bersihkan_kandang()
+    main()

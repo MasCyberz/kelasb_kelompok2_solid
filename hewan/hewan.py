@@ -13,9 +13,10 @@
 from abc import ABC, abstractmethod
 
 class Hewan(ABC):
-    def __init__(self, nama, jenis):
+    def __init__(self, nama, jenis, umur):
         self.nama = nama
         self.jenis = jenis
+        self.umur = umur
 
     @abstractmethod
     def makan(self):

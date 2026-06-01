@@ -1,14 +1,19 @@
+from interfaces.bisa_berjalan import BisaBerjalan
+from interfaces.bisa_berenang import BisaBerenang
+from interfaces.bisa_terbang import BisaTerbang
+
 class Perawatan:
-    def rawat(self, hewan):
-        print(f"\nSedang merawat {hewan.nama}...")
-        
-        if hasattr(hewan, "terbang"):
-            hewan.terbang()
+    def rawat(self, daftar_hewan):
 
-        if hasattr(hewan, "berenang"):
-            hewan.berenang()
+        print("\n=== PERAWATAN HEWAN ===")
 
-        if hasattr(hewan, "berlari"):
-            hewan.berlari()
+        for hewan in daftar_hewan:
 
-        print(f"{hewan.nama} selesai dirawat.")
+            if isinstance(hewan, BisaBerjalan):
+                hewan.berjalan()
+
+            if isinstance(hewan, BisaTerbang):
+                hewan.terbang()
+
+            if isinstance(hewan, BisaBerenang):
+                hewan.berenang()

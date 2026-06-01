@@ -1,16 +1,15 @@
-from interfaces.interface1 import BisaTerbang
-from interfaces.interface1 import BisaBerenang
-
 class KebunBinatang:
-    def __init__(self, kandang):
+
+    def __init__(self, kandang, pemberian_makan, perawatan):
         self.kandang = kandang
+        self.pemberian_makan = pemberian_makan
+        self.perawatan = perawatan
 
-    def rawat_semua_hewan(self):
-        for hewan in self.kandang.hewan_list:
-            hewan.makan()
+    def operasional_harian(self):
+        self.pemberian_makan.beri_makan(
+            self.kandang.hewan_list
+        )
 
-            if isinstance(hewan, BisaTerbang):
-                hewan.terbang()
-                
-            if isinstance(hewan, BisaBerenang):
-                hewan.berenang()
+        self.perawatan.rawat(
+            self.kandang.hewan_list
+        )
