@@ -1,3 +1,10 @@
+# ==========================================
+# TUGAS PRAKTIKUM PRINSIP SOLID
+# Nama Kelompok : Kelompok 2 - Kelas B
+# Nama Anggota  : Amelia Pinasti Nugraheni 
+# NIM           : K3525049
+# Bagian Kelas  : Habitat (kandang.py)
+# ==========================================
 
 class Kandang:
     def __init__(self, nama_kandang: str, kapasitas: int):
@@ -20,11 +27,13 @@ class Kandang:
     def tampilkan_penghuni(self):
     
         #[Memenuhi SRP]
+        #Tugasnya hanya untuk mencetak/menampilkan daftar penghuni kandang.
         print(f"\n===== DAFTAR PENGHUNI {self.nama_kandang.upper()} =====")
         if not self.daftar_hewan:
             print("Kandang ini masih kosong.")
             return
         
         for index, hewan in enumerate(self.daftar_hewan, start=1):
+            # Mengambil nama class asli hewan (misal: Elang, Singa)
             jenis_hewan = hewan.__class__.__name__
             print(f"{index}. {hewan.nama} ({jenis_hewan})")
