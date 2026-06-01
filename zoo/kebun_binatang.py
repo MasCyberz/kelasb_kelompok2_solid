@@ -1,3 +1,6 @@
+from interfaces.interface1 import BisaTerbang
+from interfaces.interface1 import BisaBerenang
+
 class KebunBinatang:
     def __init__(self, kandang):
         self.kandang = kandang
