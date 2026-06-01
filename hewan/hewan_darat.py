@@ -17,4 +17,4 @@ class HewanDarat(Hewan):
         super().__init__(nama, jenis)
 
     def makan(self):
-        print(f"{self.nama} (hewan darat) sedang makan di darat.")
+        print(f"{self.nama} sedang makan di darat.")
