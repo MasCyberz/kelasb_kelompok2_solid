@@ -11,8 +11,6 @@
 # Interface Segregation: Mengimplementasikan BisaTerbang yang terpisah.
 # Dependency Inversion: Bergantung pada abstraksi Hewan dan BisaTerbang.
 
-
-from abc import ABC, abstractmethod
 from hewan.hewan import Hewan
 from interfaces.bisa_terbang import BisaTerbang
 
